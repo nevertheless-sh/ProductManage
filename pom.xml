@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project [
+		<!ELEMENT project (modelVersion|parent|groupId|artifactId|version|name|description|properties|dependencies|build)*>
+		<!ATTLIST project
+				xmlns CDATA #REQUIRED
+				xmlns:xsi CDATA #REQUIRED
+				xsi:schemaLocation CDATA #REQUIRED>
+		<!ELEMENT modelVersion (#PCDATA)>
+		<!ELEMENT parent (groupId|artifactId|version|relativePath)*>
+		<!ELEMENT groupId (#PCDATA)>
+		<!ELEMENT artifactId (#PCDATA)>
+		<!ELEMENT version (#PCDATA)>
+		<!ELEMENT relativePath (#PCDATA)>
+		<!ELEMENT name (#PCDATA)>
+		<!ELEMENT description (#PCDATA)>
+		<!ELEMENT properties (java.version)*>
+		<!ELEMENT java.version (#PCDATA)>
+		<!ELEMENT dependencies (dependency)*>
+		<!ELEMENT dependency (groupId|artifactId|version|scope)*>
+		<!ELEMENT scope (#PCDATA)>
+		<!ELEMENT build (plugins)*>
+		<!ELEMENT plugins (plugin)*>
+		<!ELEMENT plugin (groupId|artifactId)*>
+		]>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.0</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>kr.co.hanbit</groupId>
+	<artifactId>product.management</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>product.management</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.33</version> <!-- 최신 버전으로 수정 -->
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
