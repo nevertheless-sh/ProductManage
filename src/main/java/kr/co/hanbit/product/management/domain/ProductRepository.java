@@ -1,13 +1,8 @@
 package kr.co.hanbit.product.management.domain;
 
-
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 public interface ProductRepository {
-
-
     Product add(Product product);
     Product findById(Long id);
     List<Product> findAll();

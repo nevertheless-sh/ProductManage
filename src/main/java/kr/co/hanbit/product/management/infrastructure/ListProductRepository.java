@@ -1,5 +1,6 @@
 package kr.co.hanbit.product.management.infrastructure;
 
+import kr.co.hanbit.product.management.domain.EntityNotFoundException;
 import kr.co.hanbit.product.management.domain.Product;
 import kr.co.hanbit.product.management.domain.ProductRepository;
 import org.springframework.context.annotation.Profile;
@@ -9,13 +10,12 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Repository // 주입하는애
+@Repository
 @Profile("test")
 public class ListProductRepository implements ProductRepository {
 
     private List<Product> products = new CopyOnWriteArrayList<>();
     private AtomicLong sequence = new AtomicLong(1L);
-
 
     public Product add(Product product) {
         product.setId(sequence.getAndAdd(1L));
@@ -28,7 +28,7 @@ public class ListProductRepository implements ProductRepository {
         return products.stream()
                 .filter(product -> product.sameId(id))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(() -> new EntityNotFoundException("Product를 찾지 못했습니다."));
     }
 
     public List<Product> findAll() {
@@ -44,7 +44,6 @@ public class ListProductRepository implements ProductRepository {
     public Product update(Product product) {
         Integer indexToModify = products.indexOf(product);
         products.set(indexToModify, product);
-
         return product;
     }
 
@@ -52,4 +51,5 @@ public class ListProductRepository implements ProductRepository {
         Product product = this.findById(id);
         products.remove(product);
     }
+
 }

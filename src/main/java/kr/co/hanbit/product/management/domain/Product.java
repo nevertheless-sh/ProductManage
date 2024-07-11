@@ -3,14 +3,12 @@ package kr.co.hanbit.product.management.domain;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
-import kr.co.hanbit.product.management.presentation.ProductDto;
-
 import java.util.Objects;
 
 public class Product {
     private Long id;
 
-    @Size(min =1, max = 100)
+    @Size(min = 1, max = 100)
     private String name;
 
     @Max(1_000_000)
@@ -21,8 +19,20 @@ public class Product {
     @Min(0)
     private Integer amount;
 
-    public Long getId() { return id;
+    public Product() {
     }
+
+    public Product(Long id, String name, Integer price, Integer amount) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -38,6 +48,7 @@ public class Product {
     public void setId(Long id) {
         this.id = id;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -60,8 +71,8 @@ public class Product {
 
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
         return Objects.equals(id, product.id);
     }
